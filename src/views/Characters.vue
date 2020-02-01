@@ -1,6 +1,6 @@
 <template>
   <b-row class="py-3">
-    <div v-if="isLoading" class="spinner w-100">
+    <div v-if="$apollo.queries.characters.loading" class="spinner w-100">
       <b-spinner label="Spinning"></b-spinner>
     </div>
     <template v-else>
@@ -29,13 +29,31 @@
 </template>
 
 <script>
-import { mapState, mapActions } from 'vuex';
+import charactersQuery from '../graphql/queries/characters.query.gql';
+import favoriteCharactersQuery from '../graphql/queries/favoriteCharacters.query.gql';
+import addToFavoritesMutation from '../graphql/queries/addToFavorites.mutation.gql';
 export default {
-  computed: {
-    ...mapState(['characters', 'isLoading', 'favoriteCharacters'])
+  data() {
+    return {
+      characters: [],
+      favoriteCharacters: []
+    };
+  },
+  apollo: {
+    characters: {
+      query: charactersQuery
+    },
+    favoriteCharacters: {
+      query: favoriteCharactersQuery
+    }
   },
   methods: {
-    ...mapActions(['addToFavorites']),
+    addToFavorites(character) {
+      this.$apollo.mutate({
+        mutation: addToFavoritesMutation,
+        variables: { character }
+      });
+    },
     isInFavorites(character) {
       return this.favoriteCharacters.includes(character);
     }

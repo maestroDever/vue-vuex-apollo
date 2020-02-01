@@ -16,12 +16,7 @@
 </template>
 
 <script>
-export default {
-  created() {
-    this.$store.dispatch('getCharacters');
-    this.$store.dispatch('getEpisodes');
-  }
-};
+export default {};
 </script>
 
 <style>

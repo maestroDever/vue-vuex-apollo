@@ -29,13 +29,26 @@
 </template>
 
 <script>
-import { mapState, mapActions } from 'vuex';
+import favoriteCharactersQuery from '../graphql/queries/favoriteCharacters.query.gql';
+import removeFromFavoritesMutation from '../graphql/queries/removeFromFavorites.mutation.gql';
 export default {
-  computed: {
-    ...mapState(['favoriteCharacters'])
+  data() {
+    return {
+      favoriteCharacters: []
+    };
+  },
+  apollo: {
+    favoriteCharacters: {
+      query: favoriteCharactersQuery
+    }
   },
   methods: {
-    ...mapActions(['removeFromFavorites'])
+    removeFromFavorites(id) {
+      this.$apollo.mutate({
+        mutation: removeFromFavoritesMutation,
+        variables: { id }
+      });
+    }
   }
 };
 </script>
