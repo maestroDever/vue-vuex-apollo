@@ -1,6 +1,6 @@
 <template>
   <b-row class="py-3">
-    <div v-if="$apollo.queries.characters.loading" class="spinner w-100">
+    <div v-if="loading" class="spinner w-100">
       <b-spinner label="Spinning"></b-spinner>
     </div>
     <template v-else>
@@ -19,7 +19,7 @@
           <b-button
             variant="info"
             :disabled="isInFavorites(character)"
-            @click="addToFavorites(character)"
+            @click="addToFavorites({ character })"
             >Add to favorites</b-button
           >
         </b-card>
@@ -29,34 +29,31 @@
 </template>
 
 <script>
+import { useQuery, useResult, useMutation } from '@vue/apollo-composable';
 import charactersQuery from '../graphql/queries/characters.query.gql';
 import favoriteCharactersQuery from '../graphql/queries/favoriteCharacters.query.gql';
 import addToFavoritesMutation from '../graphql/queries/addToFavorites.mutation.gql';
 export default {
-  data() {
-    return {
-      characters: [],
-      favoriteCharacters: []
+  setup() {
+    const { result: charactersResult, loading } = useQuery(charactersQuery);
+    const characters = useResult(charactersResult);
+
+    const { result: favoritesResult } = useQuery(favoriteCharactersQuery);
+    const favoriteCharacters = useResult(favoritesResult);
+
+    const { mutate: addToFavorites } = useMutation(addToFavoritesMutation);
+
+    const isInFavorites = character => {
+      return favoriteCharacters.value.includes(character);
     };
-  },
-  apollo: {
-    characters: {
-      query: charactersQuery
-    },
-    favoriteCharacters: {
-      query: favoriteCharactersQuery
-    }
-  },
-  methods: {
-    addToFavorites(character) {
-      this.$apollo.mutate({
-        mutation: addToFavoritesMutation,
-        variables: { character }
-      });
-    },
-    isInFavorites(character) {
-      return this.favoriteCharacters.includes(character);
-    }
+
+    return {
+      characters,
+      favoriteCharacters,
+      loading,
+      addToFavorites,
+      isInFavorites
+    };
   }
 };
 </script>
