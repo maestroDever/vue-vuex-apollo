@@ -19,7 +19,9 @@
           <b-card-text>
             {{ character.location.name }}
           </b-card-text>
-          <b-button variant="info" @click="removeFromFavorites(character.id)"
+          <b-button
+            variant="info"
+            @click="removeFromFavorites({ id: character.id })"
             >Remove from favorites</b-button
           >
         </b-card>
@@ -29,26 +31,19 @@
 </template>
 
 <script>
+import { useQuery, useResult, useMutation } from '@vue/apollo-composable';
 import favoriteCharactersQuery from '../graphql/queries/favoriteCharacters.query.gql';
 import removeFromFavoritesMutation from '../graphql/queries/removeFromFavorites.mutation.gql';
 export default {
-  data() {
-    return {
-      favoriteCharacters: []
-    };
-  },
-  apollo: {
-    favoriteCharacters: {
-      query: favoriteCharactersQuery
-    }
-  },
-  methods: {
-    removeFromFavorites(id) {
-      this.$apollo.mutate({
-        mutation: removeFromFavoritesMutation,
-        variables: { id }
-      });
-    }
+  setup() {
+    const { result: favoritesResult } = useQuery(favoriteCharactersQuery);
+    const favoriteCharacters = useResult(favoritesResult);
+
+    const { mutate: removeFromFavorites } = useMutation(
+      removeFromFavoritesMutation
+    );
+
+    return { favoriteCharacters, removeFromFavorites };
   }
 };
 </script>
