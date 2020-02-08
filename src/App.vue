@@ -19,7 +19,6 @@
 export default {
   created() {
     this.$store.dispatch('getCharacters');
-    this.$store.dispatch('getEpisodes');
   }
 };
 </script>
