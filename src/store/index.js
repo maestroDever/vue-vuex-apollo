@@ -8,16 +8,12 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    episodes: [],
     characters: [],
     favoriteCharacters: [],
     isLoading: false,
     error: null
   },
   mutations: {
-    getEpisodes(state, payload) {
-      state.episodes = payload;
-    },
     getCharacters(state, payload) {
       state.characters = payload;
     },
@@ -37,14 +33,6 @@ export default new Vuex.Store({
     }
   },
   actions: {
-    getEpisodes({ commit }) {
-      commit('toggleLoading', true);
-      axios
-        .get('/episode')
-        .then(res => commit('getEpisodes', res.data.results))
-        .catch(err => commit('setError', error))
-        .finally(() => commit('toggleLoading', false));
-    },
     getCharacters({ commit }) {
       commit('toggleLoading', true);
       axios
