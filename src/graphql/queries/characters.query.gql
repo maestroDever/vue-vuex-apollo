@@ -1,8 +1,12 @@
 query Characters {
-  characters @client {
-    id
-    name
-    location
-    image
+  characters {
+    results {
+      id
+      name
+      location {
+        name
+      }
+      image
+    }
   }
 }
