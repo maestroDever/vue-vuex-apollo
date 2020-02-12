@@ -9,8 +9,9 @@
   "dependencies": {
     "@vue/apollo-composable": "^4.0.0-alpha.6",
     "@vue/composition-api": "^0.3.4",
-    "apollo-cache-inmemory": "^1.6.3",
-    "apollo-client": "^2.6.4",
+    "apo": "^0.0.0",
+    "apollo-cache-inmemory": "^1.6.5",
+    "apollo-client": "^2.6.8",
     "apollo-link": "^1.2.13",
     "apollo-link-http": "^1.5.16",
     "axios": "^0.19.0",
