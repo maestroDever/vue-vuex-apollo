@@ -36,7 +36,6 @@ import addToFavoritesMutation from '../graphql/queries/addToFavorites.mutation.g
 export default {
   setup() {
     const { result: charactersResult, loading } = useQuery(charactersQuery);
-    console.log(charactersResult);
 
     const characters = useResult(
       charactersResult,
