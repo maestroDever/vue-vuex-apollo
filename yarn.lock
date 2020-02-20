@@ -834,10 +834,10 @@
   resolved "https://registry.yarnpkg.com/@types/zen-observable/-/zen-observable-0.8.0.tgz#8b63ab7f1aa5321248aad5ac890a485656dcea4d"
   integrity sha512-te5lMAWii1uEJ4FwLjzdlbw3+n0FZNOvFXHxQDKeT0dilh7HOzdMzV2TrJVUzq8ep7J4Na8OUYPRLSQkJHAlrg==
 
-"@vue/apollo-composable@^4.0.0-alpha.6":
-  version "4.0.0-alpha.6"
-  resolved "https://registry.yarnpkg.com/@vue/apollo-composable/-/apollo-composable-4.0.0-alpha.6.tgz#3c6e868165b80f21f4db2f5dc0ad65aedd3a2a91"
-  integrity sha512-ktkxQM4CMPxJLZUxLGCNgt32u0665u2xGgkAcJcBpPLQ1Pwm1eBSl2IDD2vRaJ4oKWGgdVFpfZ0sCQ+EPVTGFw==
+"@vue/apollo-composable@^4.0.0-alpha.7":
+  version "4.0.0-alpha.7"
+  resolved "https://registry.yarnpkg.com/@vue/apollo-composable/-/apollo-composable-4.0.0-alpha.7.tgz#b6f9aeee69ab5f8922255f3454bcbf87e7d02b44"
+  integrity sha512-riObuF/QxYUXQTdlL+mddSYFtKjGecPfVRry+vy2hejHSDmwWkezqy09VbdhxPct1OnMTzWTjfYQOlMhGzqcOg==
   dependencies:
     throttle-debounce "^2.1.0"
 
@@ -5948,6 +5948,11 @@ pify@^4.0.1:
   version "4.0.1"
   resolved "https://registry.yarnpkg.com/pify/-/pify-4.0.1.tgz#4b2cd25c50d598735c50292224fd8c6df41e3231"
   integrity sha512-uB80kBFb/tfd68bVleG9T5GGsGPjJrLAUpR5PZIrhBnIaRTQRjqdJSsIKkOP6OAIFbj7GOrcudc5pNjZ+geV2g==
+
+pinia@^0.0.5:
+  version "0.0.5"
+  resolved "https://registry.yarnpkg.com/pinia/-/pinia-0.0.5.tgz#e95fde7c3de5cdef1d4bd71fa0d9c3110862c641"
+  integrity sha512-EF3LpCYsA1VSm9EeCK87UHA66NFM/7++D0qnWTzSPgQ+UKoUQytWsXat777bj9WDzjNELxKlyP3Ifv44IURi2g==
 
 pinkie-promise@^2.0.0:
   version "2.0.1"
